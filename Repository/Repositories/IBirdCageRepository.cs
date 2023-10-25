@@ -11,6 +11,8 @@ namespace Repository.Repositories
     {
         IEnumerable<BirdCage> GetCages();
 
+        IEnumerable<BirdCage> GetAvailableReadyMadeCages();
+
         BirdCage GetCageById(int cageId);
 
         void InsertCage(BirdCage cage);

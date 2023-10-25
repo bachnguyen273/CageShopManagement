@@ -16,6 +16,8 @@ namespace Repository.Repositories
 
         public IEnumerable<BirdCage> GetCages() => BirdCageDAO.Instance.GetCageList();
 
+        public IEnumerable<BirdCage> GetAvailableReadyMadeCages() => BirdCageDAO.Instance.GetAvailableReadyMadeCageList();
+
         public void InsertCage(BirdCage cage) => BirdCageDAO.Instance.AddNew(cage);
 
         public void UpdateCage(BirdCage cage) => BirdCageDAO.Instance.Update(cage);

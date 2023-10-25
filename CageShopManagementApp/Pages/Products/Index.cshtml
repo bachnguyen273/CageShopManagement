@@ -2,3 +2,40 @@
 @model CageShopManagementApp.Pages.Products.IndexModel
 @{
 }
+@if (Model.Role == "Customer" || Model.Role == null)
+{
+    <div class="container">
+    @if (Model.ReadyMadeCages.Count == 0)
+    {
+        <p>There are no products available.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var cage in Model.ReadyMadeCages)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <img src="@cage.ImagePath" class="card-img-top" alt="Cage Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@cage.CageName</h5>
+                            <p class="card-text">Type: @cage.BirdType</p>
+                            <p class="card-text">Price: @cage.Price</p>
+                        </div>
+                    </div>
+                </div>
+
+                @if ((Array.IndexOf(Model.ReadyMadeCages.ToArray(), cage) + 1) % 4 == 0)
+                {
+                    @:</div>
+                    @:<div class="row">
+                }
+            }
+        </div>
+    }
+    </div>
+}
+else
+{
+    RedirectToPage("/Users/Login");
+}

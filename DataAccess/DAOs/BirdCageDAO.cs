@@ -42,6 +42,21 @@ namespace DataAccess.DAOs
             return cages;
         }
 
+        public IEnumerable<BirdCage> GetAvailableReadyMadeCageList()
+        {
+            var readyMadeCages = new List<BirdCage>();
+            try
+            {
+                using var context = new CageShopManagementContext();
+                readyMadeCages = context.BirdCages.Where(e => e.CreatedByCustomer == null && e.IsAvailable).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return readyMadeCages;
+        }
+
         public BirdCage GetCageById(int cageId)
         {
             BirdCage cage = null;
